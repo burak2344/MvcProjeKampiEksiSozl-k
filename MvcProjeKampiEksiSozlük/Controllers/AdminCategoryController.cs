@@ -6,6 +6,7 @@ using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,6 +15,9 @@ namespace MvcProjeKampiEksiSozlük.Controllers
     public class AdminCategoryController : Controller
     {
         CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+        CategoryValidator categoryValidator = new CategoryValidator();
+
+        //[Authorize(Roles="A,B")]
         public ActionResult Index()
         {
             var categoryvalues = categoryManager.GetList();
@@ -29,11 +33,12 @@ namespace MvcProjeKampiEksiSozlük.Controllers
         [HttpPost]
         public ActionResult AddCategory(Category p)
         {
-            CategoryValidator categoryValidator = new CategoryValidator();
+           
             ValidationResult result = categoryValidator.Validate(p);
 			if (result.IsValid)
 			{
                 categoryManager.CategoryAddBL(p);
+                Thread.Sleep(1500);
                 return RedirectToAction("Index");
 			}
 			else
@@ -62,8 +67,21 @@ namespace MvcProjeKampiEksiSozlük.Controllers
         [HttpPost]
         public ActionResult EditCategory(Category p)
         {
-            categoryManager.CategoryUpdate(p);
-            return RedirectToAction("Index");
+            ValidationResult result = categoryValidator.Validate(p);
+            if (result.IsValid)
+            {
+                categoryManager.CategoryUpdate(p);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            
+            return View();
         }
     }
 }

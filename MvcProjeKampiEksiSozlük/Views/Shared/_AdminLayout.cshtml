@@ -17,6 +17,9 @@
 	<link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -48,34 +51,34 @@ to get the desired effect
 						<img src="~/AdminLTE-3.0.4/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">Alexander Pierce</a>
+						<a href="#" class="d-block">Admin Paneli</a>
 					</div>
 				</div>
 				<!-- Sidebar Menu -->
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-						<!-- Add icons to the links using the .nav-icon class
-	with font-awesome or any other icon font library -->
-						<li class="nav-item has-treeview menu-open">
-							<a href="#" class="nav-link">
+						@*@if (User.IsInRole("B"))
+		{*@
+						<li class="nav-item has-treeview ">
+							<a href="/AdminCategory/Index/" class="nav-link">
 								<i class="nav-icon fas fa-tachometer-alt"></i>
 								<p>
 									Kategoriler
 								</p>
 							</a>
 						</li>
-						
-							<li class="nav-item">
-								<a href="/Statistics/Index" class="nav-link">
-									<i class="nav-icon fas fa-copy"></i>
-									<p>
-										İstatistik Tablosu
-									</p>
-								</a>
-							</li>
-						
+						@*}*@
 						<li class="nav-item">
-							<a href="pages/widgets.html" class="nav-link">
+							<a href="/Statistics/Index" class="nav-link">
+								<i class="nav-icon fas fa-copy"></i>
+								<p>
+									İstatistik Tablosu
+								</p>
+							</a>
+						</li>
+
+						<li class="nav-item">
+							<a href="/Heading/Index/" class="nav-link">
 								<i class="nav-icon fas fa-th"></i>
 								<p>
 									Başlıklar
@@ -83,7 +86,7 @@ to get the desired effect
 							</a>
 						</li>
 						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
+							<a href="/Writer/Index/" class="nav-link">
 								<i class="nav-icon fas fa-copy"></i>
 								<p>
 									Yazarlar
@@ -120,7 +123,7 @@ to get the desired effect
 							</ul>
 						</li>
 						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
+							<a href="/About/Index/" class="nav-link">
 								<i class="nav-icon fas fa-tree"></i>
 								<p>
 									Hakkımızda
@@ -128,23 +131,15 @@ to get the desired effect
 							</a>
 						</li>
 						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
+							<a href="/Contact/Index/" class="nav-link">
 								<i class="nav-icon fas fa-edit"></i>
 								<p>
 									İletişim & Mesajlar
 								</p>
 							</a>
 						</li>
-						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-table"></i>
-								<p>
-									Yazılar
-								</p>
-							</a>
-						</li>
 						<li class="nav-item">
-							<a href="pages/calendar.html" class="nav-link">
+							<a href="/Authorization/Index/" class="nav-link">
 								<i class="nav-icon fas fa-calendar-alt"></i>
 								<p>
 									Yetkilendirmeler
@@ -152,7 +147,7 @@ to get the desired effect
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="pages/gallery.html" class="nav-link">
+							<a href="/Gallery/Index" class="nav-link">
 								<i class="nav-icon far fa-image"></i>
 								<p>
 									Galeri
@@ -160,11 +155,18 @@ to get the desired effect
 							</a>
 						</li>
 						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
+							<a href="/ErrorPage/Page404/" class="nav-link">
 								<i class="nav-icon far fa-envelope"></i>
 								<p>
 									Hata Sayfaları
-									<i class="fas fa-angle-left right"></i>
+								</p>
+							</a>
+						</li>
+						<li class="nav-item has-treeview">
+							<a href="/TalentCard/Index/" class="nav-link">
+								<i class="nav-icon fas fa-circle"></i>
+								<p>
+									Profil Kartım
 								</p>
 							</a>
 						</li>
@@ -178,7 +180,7 @@ to get the desired effect
 
 						</li>
 						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
+							<a href="/Login/LogOut/" class="nav-link">
 								<i class="nav-icon fas fa-apple-alt"></i>
 								<p>
 									Çıkış yap
@@ -216,4 +218,4 @@ to get the desired effect
 	<script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
 	<script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>
 </body>
-</html>
+</html>	

@@ -18,6 +18,8 @@ namespace EntityLayer.Concrete
 		public int CategoryId { get; set; }
 		public virtual Category Category { get; set; }
 		public bool HeadingStatus { get; set; }
+		public bool IsWriterHeading { get; set; }
+
 
 
 		public int WriterId { get; set; }

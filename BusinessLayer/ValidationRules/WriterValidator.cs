@@ -12,18 +12,22 @@ namespace BusinessLayer.ValidationRules
 	{
 		public WriterValidator()
 		{
-			RuleFor(x => x.WriterName).NotEmpty().WithMessage("Yazar adını boş geçemezsiniz.");
-			RuleFor(x => x.WriterName).MinimumLength(2).WithMessage("Lütfen en az 2 karater girişi yapınız.");
-			RuleFor(x => x.WriterSurnam).MaximumLength(50).WithMessage("Lütfen en fazla 50 karater girişi yapınız.");
-			RuleFor(x => x.WriterSurnam).NotEmpty().WithMessage("Yazar soy adını  boş geçemezsiniz.");
-			RuleFor(x => x.WriterAbout).NotEmpty().WithMessage("Hakkında kısmını  boş geçemezsiniz.");
-			RuleFor(x => x.WriterTitle).NotEmpty().WithMessage("Ünvan kısmını  boş geçemezsiniz.");
-			RuleFor(x => x.WriterSurnam).MinimumLength(2).WithMessage("Lütfen en az 2 karater girişi yapınız.");
-			RuleFor(x => x.WriterSurnam).MaximumLength(50).WithMessage("Lütfen en fazla 50 karater girişi yapınız.");
-			RuleFor(x => x.WriterAbout).Must(IsAboutValid).WithMessage("Hakkında kısmında en az bir defa a harfi kullanılmalıdır");
+			RuleFor(x => x.WriterName).NotEmpty().WithMessage("Yazar adı boş olamaz!");
+			RuleFor(x => x.WriterName).MinimumLength(2).WithMessage("Yazar adı en az 2 karakter olmalıdır!");
+			RuleFor(x => x.WriterSurnam).NotEmpty().WithMessage("Yazar soyadı boş olamaz!");
+			RuleFor(x => x.WriterSurnam).MinimumLength(3).WithMessage("Yazar soyadı en az 2 karakter olmalıdır!");
+			RuleFor(x => x.WriterTitle).NotEmpty().WithMessage("Yazar Ünvanı boş olamaz!");
+			RuleFor(x => x.WriterAbout).NotEmpty().WithMessage("Yazar hakkında boş olamaz!");
+			RuleFor(x => x.WriterAbout).MinimumLength(2).WithMessage("Yazar hakkında en az 2 karakter olmalıdır!");
+			RuleFor(x => x.WriterAbout).Must(MustBeA).WithMessage("Hakkında kısmında mutlaka A harfı olmalıdır!");
+			RuleFor(x => x.WriterMail).NotEmpty().WithMessage("Yazar mail boş olamaz!");
+			RuleFor(x => x.WriterMail).EmailAddress().WithMessage("Yazar maili mail adresi türünde olmalıdır!");
+			RuleFor(x => x.WriterPassword).NotEmpty().WithMessage("Yazar şifre boş olamaz!");
+			RuleFor(x => x.WriterPassword).MinimumLength(3).WithMessage("Yazar şifre en az 3 karakter olmalıdır!");
 		}
 
-		private bool IsAboutValid(string arg)
+
+		private bool MustBeA(string arg)
 		{
 			var result = arg.Contains("A") || arg.Contains("a");
 			return result;

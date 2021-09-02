@@ -1,0 +1,34 @@
+﻿@model EntityLayer.Concrete.Content
+@{
+	ViewBag.Title = "AddContent";
+	Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h2>İçerik Ekleme Sayfası</h2>
+<br />
+@using (Html.BeginForm("AddContent", "WriterPanelContent", FormMethod.Post))
+{
+	<div class="form-group">
+		<input type="hidden" name="HeadingId" value="@ViewBag.result" />
+		@Html.Label("İçeriğinizi yazınız")
+		@Html.TextAreaFor(x => x.ContentValue, 4, 30, new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.ContentValue)
+		<br />
+		<button class="btn btn-info" id="added">Ekle</button>
+	</div>
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<script>
+        $('#added').click(function () {
+            swal({
+                title: "Gönderildi!",
+                text: "İçerik Başarıyla Gönderildi!",
+                icon: "success",
+                button: false
+            });
+        });
+</script>
+

@@ -38,9 +38,19 @@ namespace MvcProjeKampiEksiSozlük.Roles
 
 		public override string[] GetRolesForUser(string username)
 		{
-			Context c = new Context();
-			var x = c.Admins.FirstOrDefault(y => y.AdminUserName == username);
-			return new string[] { x.AdminRole };
+			Context context = new Context();
+			var result = context.Admins.FirstOrDefault(x => x.AdminUserName == username);
+			var resultWriter = context.Writers.FirstOrDefault(x => x.WriterMail == username);
+
+			if (result != null)
+			{
+				return new string[] { result.AdminRole };
+			}
+			else if (resultWriter != null)
+			{
+				return new string[] { resultWriter.WriterRole };
+			}
+			return new string[] { };
 		}
 
 		public override string[] GetUsersInRole(string roleName)

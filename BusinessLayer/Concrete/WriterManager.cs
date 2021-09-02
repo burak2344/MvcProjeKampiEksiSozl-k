@@ -50,7 +50,7 @@ namespace BusinessLayer.Concrete
 
 		public void UpdateWriterPanel(Writer writer)
 		{
-			WriterPasswordUpdate(writer);
+			WriterUpdate2(writer);
 			_writerDal.Update(writer);
 		}
 
@@ -77,6 +77,7 @@ namespace BusinessLayer.Concrete
 
 			writer.WriterStatus = true;
 			writer.WriterRole = "C";
+
 		}
 
 		private void WriterPasswordUpdate(Writer writer)

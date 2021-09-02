@@ -6,6 +6,7 @@ using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -32,7 +33,9 @@ namespace MvcProjeKampiEksiSozlük.Controllers
             ValidationResult result = writerValidator.Validate(p);
 			if (result.IsValid)
 			{
+                p.WriterRole = "C";
                 writerManager.WriterAdd(p);
+                Thread.Sleep(1500);
                 return RedirectToAction("Index");
 			}
 			else
@@ -57,6 +60,7 @@ namespace MvcProjeKampiEksiSozlük.Controllers
             ValidationResult result = writerValidator.Validate(p);
             if (result.IsValid)
             {
+                p.WriterRole = "C";
                 writerManager.WriterUpdate(p);
                 return RedirectToAction("Index");
             }

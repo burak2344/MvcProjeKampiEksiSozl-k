@@ -17,5 +17,9 @@ namespace MvcProjeKampiEksiSozlük.Controllers
 		{
             return View();
 		}
+        public ActionResult SweetAlert()
+		{
+            return View();
+        }
     }
 }

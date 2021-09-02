@@ -25,11 +25,6 @@ namespace BusinessLayer.Concrete
 			_adminService = adminService;
 		}
 
-		//public LoginManager(IWriterService writerService, IAdminService adminService)
-		//{
-		//	_writerService = writerService;
-		//	_adminService = adminService;
-		//}
 
 		public Admin AdminLogin(Admin admin)
 		{
